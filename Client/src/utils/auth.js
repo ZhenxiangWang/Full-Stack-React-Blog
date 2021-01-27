@@ -4,7 +4,7 @@ import history from "./history";
 export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: "web-blog.au.auth0.com",
-    clientID: "uZxUdMAsiDWeu3OrNpoi4JwJscdF5nAx",
+    clientID: "n9FwdxtZVb1AIwYzD6yX2abW4OrNNs2e",
     redirectUri: "http://localhost:3000/callback",
     responseType: "token id_token",
     scope: "openid profile email",
