@@ -11,6 +11,7 @@ CREATE TABLE posts (
   pid SERIAL PRIMARY KEY,
   title VARCHAR(255),
   body VARCHAR,
+  search_vector TSVECTOR,
   user_id INT REFERENCES users(uid),
   author VARCHAR REFERENCES users(username),
   date_created TIMESTAMP,
@@ -24,5 +25,15 @@ CREATE TABLE comments (
   author VARCHAR REFERENCES users(username),
   user_id INT REFERENCES users(uid),
   post_id INT REFERENCES posts(pid),
+  date_created TIMESTAMP
+);
+
+
+CREATE TABLE messages (
+  mid SERIAL PRIMARY KEY,
+  message_sender VARCHAR(255) REFERENCES users(username),
+  message_to VARCHAR(255) REFERENCES users(username),
+  message_title VARCHAR(255),
+  message_body VARCHAR,
   date_created TIMESTAMP
 );
