@@ -72,7 +72,7 @@ export const remove_db_profile = () => {
   };
 };
 
-export const fetch_db_posts = (posts) => {
+export const set_db_posts = (posts) => {
   return {
     type: ACTION_TYPES.FETCH_DB_POSTS,
     payload: posts,
