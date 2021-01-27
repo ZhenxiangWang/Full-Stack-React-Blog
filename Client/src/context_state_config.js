@@ -80,6 +80,8 @@ const ContextState = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+    // event.persist() prevents React from resetting its properties
+    // As of v17, e.persist() doesn’t do anything because the SyntheticEvent is no longer pooled.
     event.persist();
     dispatchFormReducer(
       ACTIONS.user_input_submit(event.target.useContext.value)
@@ -88,6 +90,7 @@ const ContextState = () => {
 
   //Handle authentication from callback
   const handleAuthentication = (props) => {
+    // props.location.hash is a given react-router functionality that checks if there is any value in the URL hash fragment.
     if (props.location.hash) {
       auth.handleAuth();
     }
@@ -136,15 +139,14 @@ const ContextState = () => {
           handleUserRemoveProfile: () => handleRemoveProfile(),
           handleAddDBProfile: (profile) => handleDBProfile(profile),
           handleRemoveDBProfile: () => handleRemoveDBProfile(),
+          //Handle auth
+          handleAuth: (props) => handleAuthentication(props),
+          authObj: auth,
 
           //Posts Reducer
           postsState: statePostsReducer.posts,
           handleAddPosts: (posts) => handleSetPosts(posts),
           handleRemovePosts: () => handleRemovePosts(),
-
-          //Handle auth
-          handleAuth: (props) => handleAuthentication(props),
-          authObj: auth,
         }}
       >
         <Routes />
